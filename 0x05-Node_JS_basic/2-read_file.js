@@ -12,6 +12,7 @@ function countStudents(dataPath) {
     .trim().split('\n');
 
   const fields = {};
+  let total_students = 0;
   for (const row of lines.slice(1, lines.length)) {
     const record = row.trim().split(',');
     if (record) {
@@ -20,9 +21,11 @@ function countStudents(dataPath) {
         fields[field] = [];
       }
       fields[field].push(record[0]);
+      total_students++;
     }
   }
 
+  console.log(`Number of students: ${total_students}`);
   for (const [field, value] of Object.entries(fields)) {
     console.log(`Number of students in ${field}: ${value.length}. List: ${value.join(', ')}`);
   }
